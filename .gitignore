@@ -36,5 +36,8 @@
 ehthumbs.db
 Thumbs.db
 
-# Alliander data folder #
+# exclude all content of Alliander_data folder #
 /Alliander_data/*
+
+# keep data folder itself for structure # 
+!Alliander/.gitkeep

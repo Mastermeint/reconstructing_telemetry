@@ -41,3 +41,9 @@ Alliander_data/*
 
 # keep data folder itself for structure # 
 !Alliander/.gitkeep
+
+# exclude all output visualizations in /visualize/ folder #
+visualize/*
+
+# keep data folder itself for structure # 
+!visualize/.gitkeep

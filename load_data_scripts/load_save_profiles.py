@@ -3,31 +3,9 @@ import numpy as np
 
 
 def normalize_df(df):
-    matrix = df.to_numpy()
 
-    shape = np.shape(matrix)
-    shape = np.asarray(shape)
-    vector_sums = np.zeros(shape[1])
-
-    for i in range(shape[1]):
-        vector_sums[i] = np.sum(matrix[:, i])
-
-    # normalize_data_wrt_sum
-    for i in range(shape[0]):
-        for j in range(shape[1]):
-            matrix[i, j] = np.abs(matrix[i, j]/vector_sums[j])
-
-    normalized_df = pd.DataFrame(data=matrix,
-                                 index=df.index,
-                                 columns=df.columns)
-
-    return normalized_df
-
-
-def total_consumption_meetdata(df):
-    column_list = list(df)
-
-    df["SUM"] = df[column_list].sum(axis=1)
+    for column in df.columns:
+        df[column] = df[column]/df[column].sum()
 
     return df
 
@@ -41,17 +19,24 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
         neat_profile_df = pd.read_csv(
             Alliander_path + "neat_profiles.csv", index_col=0)
     except FileNotFoundError:
+        # create new, sorted connection file
         connect_df = pd.read_csv(
-            Alliander_path + "aansluiting_attributen.csv", index_col=0)
-        connect_df.sort_values(by=['RND_ID'], inplace=True)
+            Alliander_path + "aansluiting_attributen.csv",
+            usecols=['BASELOAD_PROFILE', 'AANSLUITCATEGORIE', 'RND_ID'],
+            index_col='RND_ID').sort_index()
         connect_df.to_csv(
             Alliander_path + 'sorted_connect.csv')
 
-        # read all profiles
+        # create new concatenated profile dataframe
         profile_df = pd.read_csv(
-            Alliander_path + 'profielen.csv', index_col=0)
+            Alliander_path + 'profielen.csv',
+            index_col='DATUM_TIJDSTIP')
+        profile_df.index = pd.to_datetime(profile_df.index)
+
         edsn_profile_df = pd.read_csv(
-            Alliander_path + "edsn_profielen.csv", index_col=0)
+            Alliander_path + "edsn_profielen.csv",
+            index_col='DATUM_TIJD_VAN_STRING')
+        edsn_profile_df.index = pd.to_datetime(edsn_profile_df.index)
 
         # select all profiles from 'aansluiting_attributen' to get the
         # relevant baseload profiles
@@ -71,19 +56,16 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
         # 'aansluiting_attributen' file
         # from the big and intermediate profiles
         big_interest_df = profile_df[
-            profile_df.columns.intersection(profile_of_interest)]
+            profile_df.columns.intersection(profile_of_interest)].sort_index()
 
         edsn_interest_df = edsn_profile_df[
-            edsn_profile_df.columns.intersection(profile_of_interest)]
+            edsn_profile_df.columns.intersection(
+                profile_of_interest)].sort_index()
 
         strp_profile_df = pd.concat([big_interest_df, edsn_interest_df],
                                     axis=1)
         # normalize all profiles
-        norm_strp_profiles_df = normalize_df(strp_profile_df)
-
-        # append 'sum' column for all customers
-        neat_profile_df = total_consumption_meetdata(
-            norm_strp_profiles_df)
+        neat_profile_df = normalize_df(strp_profile_df)
 
         neat_profile_df.to_csv(
             Alliander_path + "neat_profiles.csv")
@@ -91,22 +73,11 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
     return connect_df, neat_profile_df
 
 
-# TODO: adjust to load_data function
-# only load parts of the meet_data have the desired profiles
-def specific_profile_telem(profiles):
-    profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/profielen.csv')
-    profile_df.loc[profile_df['BASELOAD_PROFILE'].isin(profiles)]
-    indexes = profile_df['RND_ID'].sort_values(by='RND_ID').values
-
-    meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',
-                              skiprows=lambda x: x not in indexes)
-    return meetdata_df
-
-
 if __name__ == "__main__":
-    profile_df, meetdata_df = load_profiles(reload=True)
-    SJV = total_consumption_meetdata(meetdata_df)
-    print("SJV: ")
-    print(SJV.head())
+    connect_df, profile_df = load_profiles(reload=True)
+    print("profiles: ")
+    print(profile_df .head())
+    print('connect: ')
+    print(connect_df.head(6))
 
     print("done")

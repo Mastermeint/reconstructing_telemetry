@@ -47,3 +47,5 @@ visualize/*
 
 # keep data folder itself for structure # 
 !visualize/.gitkeep
+
+/load_data_scripts/__pycache__/

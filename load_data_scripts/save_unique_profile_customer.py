@@ -1,36 +1,34 @@
 import pandas as pd
-# import numpy as np
 from load_save_profiles import load_profiles
 
 
-Alliander_path = "../Alliander_data/"
+def unique_profile(reload=0, Alliander_path="../Alliander_data/",
+                   nrows=100):
+    try:
+        if reload:
+            raise FileNotFoundError
+        unique_df = pd.read_csv(
+            Alliander_path + 'unique_meetdata.csv',
+            index_col=0,
+            nrows=nrows)
+    except FileNotFoundError:
+        connect_df, _ = load_profiles(reload=reload,
+                                      Alliander_path=Alliander_path)
+        get_indexes = connect_df.index.drop_duplicates(
+            keep=False).append(pd.Index([0]))
 
-connect_df, profile_df = load_profiles()
+        unique_df = pd.read_csv(Alliander_path + 'gv_meetdata_select.csv',
+                                skiprows=lambda x: x not in get_indexes,
+                                index_col=0,
+                                nrows=100)
+        unique_df.to_csv(Alliander_path + 'unique_meetdata.csv')
+    return unique_df
+
 
 if __name__ == "__main__":
+    print('reloading everything')
+    unique_df = unique_profile(reload=1)
 
-    print('loading connect and profile dfs')
-    connect_df, _ = load_profiles()
-    print('finished loading dfs')
-    print('connect head: ')
-    print(connect_df.head(15))
-
-    print('now loading meetdata_df')
-    get_indexes = connect_df.index.drop_duplicates(keep=False)
-#  meet_data_df = pd.read_csv(Alliander_path + 'gv_meetdata_select.csv',
-#                             nrows=30, index_col=0)
-    meet_data_df = pd.read_csv(Alliander_path + 'gv_meetdata_select.csv',
-                               skiprows=lambda x: x not in get_indexes,
-                               index_col=0,
-                               nrows=500)
-    meet_data_df.sort_index(inplace=True)
-
-    meet_data_nodup_df = meet_data_df[
-        connect_df.index.drop_duplicates(keep=False)]
-    # meet_data_nodup_df = meet_data_df[~no_dup_idx]
-    print('length of shortened meetdata')
-    print(len(meet_data_nodup_df[0]))
-    print('finished loading meetdata_df')
-    print(meet_data_df[:5].head(5))
-    print(meet_data_df.index)
+    print('unique meetdata: ')
+    print(unique_df[:5].head(10))
     print("done")

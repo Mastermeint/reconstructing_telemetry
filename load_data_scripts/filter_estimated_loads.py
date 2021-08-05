@@ -25,7 +25,7 @@ import csv
 
 
 print("starting to load all the data")
-estimated_loads_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/estimated_loads.csv',nrows = 100)
+estimated_loads_df = pd.read_csv('../Alliander_data/estimated_loads.csv',nrows = 100)
 #meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',nrows = 10, index_col=0)
 
 #meetdata_df.sort_index(inplace=True)
@@ -44,11 +44,11 @@ def remove_double_profiles(df):
             if i != j:
                 if costumer_column_np[i] == costumer_column_np[j]:
                     condition = True
-        
+
         if condition == False:
             df_np = df.to_numpy()
             cleaned_df_np.append(df_np[i,:])
-    
+
     cleaned_df = pd.DataFrame(data = cleaned_df_np)
 
     return cleaned_df

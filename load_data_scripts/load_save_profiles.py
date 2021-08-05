@@ -76,7 +76,7 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
 if __name__ == "__main__":
     connect_df, profile_df = load_profiles(reload=True)
     print("profiles: ")
-    print(profile_df .head())
+    print(profile_df.head())
     print('connect: ')
     print(connect_df.head(6))
 

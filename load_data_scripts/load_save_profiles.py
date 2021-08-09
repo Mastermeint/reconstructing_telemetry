@@ -18,6 +18,7 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
             Alliander_path + "sorted_connect.csv", index_col=0)
         neat_profile_df = pd.read_csv(
             Alliander_path + "neat_profiles.csv", index_col=0)
+        neat_profile_df.index = pd.to_datetime(neat_profile_df.index)
     except FileNotFoundError:
         # create new, sorted connection file
         connect_df = pd.read_csv(

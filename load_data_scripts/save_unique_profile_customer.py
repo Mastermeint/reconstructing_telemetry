@@ -1,5 +1,5 @@
 import pandas as pd
-from load_save_profiles import load_profiles
+from .load_save_profiles import load_profiles
 
 
 def unique_profile(reload=0, Alliander_path="../Alliander_data/",

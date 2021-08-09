@@ -321,7 +321,7 @@ def plot_spec(spec_res, coverage=None, ax=None, title=None):
 
 def produce_differences_df(df):
     column_list = list(df)
-    #column_list.remove("NUM")
+    column_list.remove("NUM")
 
     df = df[column_list].diff(axis=1, periods = 1)
     df.fillna(value = 0, axis = 0, inplace = True)
@@ -459,8 +459,8 @@ def compute_frequency_peak(diff_df_np):
     
     s1_diff = spec_pgram(diff_df_np, spans = [51,51], taper = 0.1, plot=True)
 
-    #print('1 / Peak: ', round(1/s1_diff['freq'][np.argmax(s1_diff['spec'])]/4, 2), 'hour')
-    frequency = round(1/s1_diff['freq'][np.argmax(s1_diff['spec'])]/4, 2)
+    #print('1 / Peak: ', round(1/s1_diff['freq'][np.argmax(s1_diff['spec'])]/15, 2), 'minutes')
+    frequency = round(1/s1_diff['freq'][np.argmax(s1_diff['spec'])]/15, 2)
 
     return frequency
 
@@ -478,9 +478,6 @@ def compute_df_frequencies(df):
         diff_company_i = diff_meetdata_np[i,1:]
         condition = False
         #check stationarity
-        if i%100 == 0:
-            print(i)
-
         try:
             ADF = ADF_test(diff_company_i)
             #KPSS = KPSS_test(diff_company_i)
@@ -601,3 +598,10 @@ def specific_profile_telem(profiles):
     return meetdata_df
 
 
+if __name__ == "__main__":
+    profile_df, meetdata_df = load_profiles(reload=True)
+    SJV = total_consumption_meetdata(meetdata_df)
+    print("SJV: ")
+    print(SJV.head())
+
+    print("done")

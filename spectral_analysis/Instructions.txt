@@ -1,0 +1,13 @@
+1) Load the function.py file into your directory.
+2) Make sure that you have the csv files needed.
+3) Use compute_spectral_frequencies.py to compute
+the spectral frequencies.
+4) Use spectral_cluster.py to create the clusters.
+5) Use analysis_spectral_cluster.py to compute some statistics.
+
+The file experiments_time_series_anal.py contains some
+tests concerning time serie analysis.
+
+The file maximal_spectral.py is just test file.
+
+The other png and csv files are results.

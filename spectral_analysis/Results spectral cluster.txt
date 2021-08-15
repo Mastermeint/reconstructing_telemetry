@@ -1,0 +1,34 @@
+Customer 9 - KVK_4: (Cluster 1)
+
+Absolute error spec fit:
+2967806.5700000003
+Absolute error lin fit:
+2258924.2937401356
+The relative error for the exponential estimate is:
+0.7860191741871836
+The relative error for the linear estimate is:
+1.2355428920876599
+
+
+Customer 21 - KVK_16: (Cluster 2)
+
+Absolute error spec fit:
+1374381.43
+Absolute error lin fit:
+352179.56311340485
+The relative error for the spectral estimate is: 
+1.901909822458308
+The relative error for the linear estimate is: 
+0.11318808029999078
+
+Customer 67 - E3A: (Cluster 0)
+
+Absolute error spec fit:
+773708.94
+Absolute error lin fit:
+732280.0691200409
+The relative error for the spectral estimate is: 
+0.8939272079156094
+The relative error for the linear estimate is: 
+0.7615987579279995
+

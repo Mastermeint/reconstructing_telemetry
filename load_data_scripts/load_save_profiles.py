@@ -10,6 +10,17 @@ def normalize_df(df):
     return df
 
 
+def convert_to_kvk(profile_name):
+    # convert names in profile_of_interest to match with column names in
+    # profielen.csv
+    try:
+        profile_name = "KVKSEGMENT_{}".format(
+            str(int(profile_name)))
+    except ValueError:
+        pass
+    return profile_name
+
+
 def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
     try:
         if reload:
@@ -25,6 +36,11 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
             Alliander_path + "aansluiting_attributen.csv",
             usecols=['BASELOAD_PROFILE', 'AANSLUITCATEGORIE', 'RND_ID'],
             index_col='RND_ID').sort_index()
+
+        # put correct labels in new dataframe
+        connect_df['BASELOAD_PROFILE'] = connect_df['BASELOAD_PROFILE'].apply(
+            convert_to_kvk)
+
         connect_df.to_csv(
             Alliander_path + 'sorted_connect.csv')
 
@@ -43,15 +59,6 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
         # relevant baseload profiles
         connect_types = connect_df[["BASELOAD_PROFILE"]].values
         profile_of_interest = np.unique(connect_types)
-
-        # convert names in profile_of_interest to match with column names in
-        # profielen.csv
-        for i in range(len(profile_of_interest)):
-            try:
-                profile_of_interest[i] = "KVKSEGMENT_{}".format(
-                    str(int(profile_of_interest[i])))
-            except ValueError:
-                pass
 
         # select profiles of interest mentioned in the
         # 'aansluiting_attributen' file

@@ -22,7 +22,7 @@ import sklearn as skl
 #
 #iris = datasets.load_iris()
 #X = iris.data
-df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_frequencies.csv')
+df = pd.read_csv('../Alliander_data/spectral_frequencies.csv')
 first_column = df.columns[0]
 
 # Delete first
@@ -86,10 +86,10 @@ print(kmeans.labels_)
 labels = kmeans.labels_
 print(kmeans.cluster_centers_)
 
-df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_frequencies.csv')
+df = pd.read_csv('../Alliander_data/spectral_frequencies.csv')
 
 df['K-means cluster'] = labels
 
 print(df.head())
 
-df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_frequencies_cluster.csv')
+df.to_csv('../Alliander_data/spectral_frequencies_cluster.csv')

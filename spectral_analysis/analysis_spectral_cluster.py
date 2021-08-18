@@ -13,10 +13,10 @@ from statsmodels.tsa.arima_model import ARMA
 from statsmodels.compat import lzip
 from scipy import stats
 
-df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_frequencies_cluster.csv')
-connect_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/sorted_connect.csv')
+df = pd.read_csv('../Alliander_data/spectral_frequencies_cluster.csv')
+connect_df = pd.read_csv('../Alliander_data/sorted_connect.csv')
 
-''' Now we want to compute some statistics concerning the quality of the cluster obtained 
+''' Now we want to compute some statistics concerning the quality of the cluster obtained
 '''
 
 print(df.count())
@@ -42,7 +42,7 @@ def select_profile_costumer_cluster(connect_df,number_costumer):
             if baseload_profiles[i].isdigit() == True:
                 baseload_profiles[i] = "KVKSEGMENT_{}".format(baseload_profiles[i])
 
-            profile.append(baseload_profiles[i]) 
+            profile.append(baseload_profiles[i])
 
     return profile
 
@@ -58,7 +58,7 @@ first_column = df.columns[0]
 
 # Delete first
 df = df.drop([first_column], axis=1)
-df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_frequencies_cluster_profiles.csv', index = False)
+df.to_csv('../Alliander_data/spectral_frequencies_cluster_profiles.csv', index = False)
 
 
 def histogram_spec_cluster(df,number_cluster, connect_df):
@@ -67,7 +67,7 @@ def histogram_spec_cluster(df,number_cluster, connect_df):
     #count = df.count()
     numbers_customers = df["Customer"]
     #range_loop = np.arange(1,count.iloc[0]+1,1)
-    
+
     nb_PV = 0
     nb_WIND = 0
     nb_001 = 0
@@ -95,7 +95,7 @@ def histogram_spec_cluster(df,number_cluster, connect_df):
     nb_E3C = 0
     nb_E3D = 0
 
-    
+
     for i in range(len(numbers_customers)):
         profile_costumer = select_profile_costumer_cluster(connect_df,number_costumer[i])
         for j in range(len(profile_costumer)):
@@ -125,18 +125,18 @@ def histogram_spec_cluster(df,number_cluster, connect_df):
             if profile_costumer[j] == 'E3B': nb_E3B += 1
             if profile_costumer[j] == 'E3C': nb_E3C += 1
             if profile_costumer[j] == 'E3D': nb_E3D += 1
-    
-    dataframe_histogram = pd.Series(data = [nb_PV, nb_WIND, nb_001, nb_002, nb_003, nb_004, nb_005, nb_006, nb_007, nb_008, nb_009, nb_010, nb_011, nb_012, 
+
+    dataframe_histogram = pd.Series(data = [nb_PV, nb_WIND, nb_001, nb_002, nb_003, nb_004, nb_005, nb_006, nb_007, nb_008, nb_009, nb_010, nb_011, nb_012,
     nb_013, nb_014, nb_015, nb_016, nb_017, nb_018, nb_019, nb_020, nb_E3A, nb_E3B, nb_E3C, nb_E3D], index = ['PV', 'WIND', 'KVKSEGMENT_1','KVKSEGMENT_2',
     'KVKSEGMENT_3','KVKSEGMENT_4','KVKSEGMENT_5','KVKSEGMENT_6','KVKSEGMENT_7','KVKSEGMENT_8','KVKSEGMENT_9','KVKSEGMENT_10','KVKSEGMENT_11',
     'KVKSEGMENT_12','KVKSEGMENT_13','KVKSEGMENT_14','KVKSEGMENT_15','KVKSEGMENT_16','KVKSEGMENT_17','KVKSEGMENT_18','KVKSEGMENT_19','KVKSEGMENT_20',
     'E3A','E3B','E3C','E3D'])
 
-    total_customers_in_cluster = (nb_PV + nb_WIND + nb_001 + nb_002 + nb_003 + nb_004 + nb_005 + nb_006 + nb_007 + nb_008 + nb_009 
+    total_customers_in_cluster = (nb_PV + nb_WIND + nb_001 + nb_002 + nb_003 + nb_004 + nb_005 + nb_006 + nb_007 + nb_008 + nb_009
         + nb_010 + nb_011 + nb_012 + nb_013 + nb_014 + nb_015 + nb_016 + nb_017 + nb_018 + nb_019 + nb_020 + nb_E3A + nb_E3B  +nb_E3C + nb_E3D)
 
     return dataframe_histogram, number_cluster, total_customers_in_cluster
-    
+
 dataframe_histogram, number_cluster, total_customers_in_cluster = histogram_spec_cluster(df,0,connect_df)
 #print(dataframe_histogram.head())
 

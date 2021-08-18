@@ -14,7 +14,7 @@ from statsmodels.compat import lzip
 from scipy import stats
 import seaborn as sns
 
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', index_col=0)
+meetdata_df = pd.read_csv('../Alliander_data/unique_meetdata.csv', index_col=0)
 
 
 meetdata_df.sort_index(inplace=True)
@@ -31,12 +31,10 @@ print("Finished computing the spectral frequencies.")
 
 df_frequecies_pd = pd.DataFrame(data = df_frequencies_np, columns = ['Spectral Frequency'])
 #df_frequecies_pd.drop(columns = 'Placeholder')
-df_frequecies_pd.insert(loc = 0, column = 'Customer', value = meetdata_df.index) 
+df_frequecies_pd.insert(loc = 0, column = 'Customer', value = meetdata_df.index)
 
 print(df_frequecies_pd)
 
 import csv
 
-df_frequecies_pd.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_frequencies.csv', chunksize= 100, index = False)
-
-
+df_frequecies_pd.to_csv('../Alliander_data/spectral_frequencies.csv', chunksize= 100, index = False)

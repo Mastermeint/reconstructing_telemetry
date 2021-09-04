@@ -1,0 +1,9 @@
+1) Load the function.py file into your directory.
+2) Make sure that you have the csv files needed.
+3) Use compute_spectral_coordinates_freq.py to compute
+the 2 main spectral coordinates.
+4) Use spectral_cluster_coordinates.py to create the clusters.
+5) Use analysis_multiple_spectral_cluster.py to compute some statistics.
+6) Use spectral_coordinates_est_loads.py to compute the estimated loads profiles per each cluster.
+
+The other png and csv files are results.

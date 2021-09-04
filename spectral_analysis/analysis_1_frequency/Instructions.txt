@@ -4,7 +4,7 @@
 the spectral frequencies.
 4) Use spectral_cluster.py to create the clusters.
 5) Use analysis_spectral_cluster.py to compute some statistics.
-
+6) Use spectral_estimated_loads.py to compute the estimated loads profiles per each cluster.
 The file experiments_time_series_anal.py contains some
 tests concerning time serie analysis.
 

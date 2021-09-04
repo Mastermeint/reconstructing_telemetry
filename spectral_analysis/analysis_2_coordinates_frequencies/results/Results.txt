@@ -1,0 +1,64 @@
+Customer 9 - KVK_4: Cluster 3
+
+Absolute error spec fit:
+1786560.25
+Absolute error lin fit:
+2258924.2937401356
+The relative error for the spectral estimate is: 
+0.9005420518305116
+The relative error for the linear estimate is: 
+1.2355428920876599
+
+Customer 2 - KVK_8: Cluster 9
+
+Absolute error spec fit:
+424669.66
+Absolute error lin fit:
+189057.2163443976
+The relative error for the spectral estimate is:
+2.213351890547064
+The relative error for the linear estimate is:
+0.6642175230360058
+
+Customer 3 - E3A: Cluster 14
+
+Absolute error spec fit: 
+798039.69
+Absolute error lin fit:
+544824.7238817189
+The relative error for the spectral estimate is: 
+0.9257252734038496
+The relative error for the linear estimate is: 
+0.48658658422559214
+
+Customer 4 - KVK_6: Cluster 7
+
+Absolute error spec fit:
+1630143.34
+Absolute error lin fit:
+1192792.1929434016
+The relative error for the spectral estimate is: 
+0.8683098723572242
+The relative error for the linear estimate is:
+1.0536318720618536
+
+Customer 5 - E3A: Cluster 9
+
+Absolute error spec fit:
+344625.38
+Absolute error lin fit:
+219195.5363137863
+The relative error for the spectral estimate is: 
+1.3457443081450038
+The relative error for the linear estimate is: 
+0.608003593569412
+
+Customer 10 - E3C: Cluster 0
+Absolute error spec fit:
+486919.43
+Absolute error lin fit:
+331565.91928918066
+The relative error for the spectral estimate is:
+0.22487956444398696
+The relative error for the linear estimate is:
+0.15585919911203822

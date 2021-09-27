@@ -13,13 +13,13 @@ from statsmodels.tsa.arima_model import ARMA
 from statsmodels.compat import lzip
 from scipy import stats
 
-df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_multiple_frequencies_cluster_profiles.csv')
-connect_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/sorted_connect.csv')
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv')
+df = pd.read_csv('../Alliander_data/spectral_multiple_frequencies_cluster_profiles.csv')
+connect_df = pd.read_csv('../Alliander_data/Alliander_data/sorted_connect.csv')
+meetdata_df = pd.read_csv('../Alliander_data/Alliander_data/unique_meetdata.csv')
 first_column = meetdata_df.columns[0]
 #customer = meetdata_df
 customer = meetdata_df.drop([first_column], axis=1)
-profile = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles.csv')
+profile = pd.read_csv('../Alliander_data/Alliander_data/neat_profiles.csv')
 
 def set_correct_index_profiles(profile_df, meetdata_df):
     
@@ -35,7 +35,7 @@ def set_correct_index_profiles(profile_df, meetdata_df):
 # Delete first
     profile_df = profile_df.drop([first_column], axis=1)
     
-    profile_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles_fitted.csv')
+    profile_df.to_csv('../Alliander_data/neat_profiles_fitted.csv')
     return profile_df
 
 print(set_correct_index_profiles(profile,customer).head())    
@@ -114,7 +114,7 @@ def estimated_load_cluster(df, number_cluster, meetdata_df):
 
     real_loads = pd.DataFrame(data = real_loads)
     
-    #real_loads.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/estimated_loads.csv')
+    #real_loads.to_csv('../Alliander_data/estimated_loads.csv')
     real_loads_np = real_loads.to_numpy()
     print(real_loads_np)
     estimated_load = np.around(np.mean(real_loads_np, axis = 0),2)

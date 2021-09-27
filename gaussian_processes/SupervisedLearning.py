@@ -4,7 +4,7 @@ from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
 import pandas as pd
 
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', nrows = 11)
+meetdata_df = pd.read_csv('../Alliander_data/unique_meetdata.csv', nrows = 11)
 first_column = meetdata_df.columns[0]
 #customer = meetdata_df
 meetdata_df = meetdata_df.drop([first_column], axis=1)
@@ -30,8 +30,8 @@ print('Predicted Class: %d' % yhat)
 
 
 training_set_dimension = 10
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', nrows = training_set_dimension)
-meetdata_df_to_cluster = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', skiprows = training_set_dimension+2, nrows = 1)
+meetdata_df = pd.read_csv('../Alliander_data/unique_meetdata.csv', nrows = training_set_dimension)
+meetdata_df_to_cluster = pd.read_csv('../Alliander_data/unique_meetdata.csv', skiprows = training_set_dimension+2, nrows = 1)
 first_column = meetdata_df.columns[0]
 values_first_column = meetdata_df.iloc[:,0]
 #customer = meetdata_df
@@ -45,7 +45,7 @@ numbers_customers = values_first_column
 print("Dataframe numbers customers: ")
 print(numbers_customers)
 
-connect_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/sorted_connect.csv')
+connect_df = pd.read_csv('../Alliander_data/sorted_connect.csv')
 
 y = np.zeros(training_set_dimension)
 

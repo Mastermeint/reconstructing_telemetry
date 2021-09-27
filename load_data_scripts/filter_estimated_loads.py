@@ -26,7 +26,7 @@ import csv
 
 print("starting to load all the data")
 estimated_loads_df = pd.read_csv('../Alliander_data/estimated_loads.csv',nrows = 100)
-#meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',nrows = 10, index_col=0)
+#meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv',nrows = 10, index_col=0)
 
 #meetdata_df.sort_index(inplace=True)
 print("loaded all the databases")
@@ -59,7 +59,7 @@ cleaned_df = cleaned_df.rename(columns={cleaned_df.columns[0] : "x", cleaned_df.
 
 cleaned_df = cleaned_df.drop(["x"], axis=1)
 print(cleaned_df.head())
-cleaned_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_estimated_loads.csv')
+cleaned_df.to_csv('../Alliander_data/neat_estimated_loads.csv')
 
 #meetdata_df_np = meetdata_df.to_numpy()
 #estimated_load_company_1 = cleaned_df['Estimated Load'][2]

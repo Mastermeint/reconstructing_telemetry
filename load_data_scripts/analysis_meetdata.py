@@ -25,11 +25,11 @@ import csv
 
 
 print("starting to load all the data")
-profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/profielen.csv')
-edsn_profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/edsn_profielen.csv')
-neat_profiles_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles.csv')
-connect_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/sorted_connect.csv')
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',index_col=0)
+profile_df = pd.read_csv('../Alliander_data/profielen.csv')
+edsn_profile_df = pd.read_csv('../Alliander_data/edsn_profielen.csv')
+neat_profiles_df = pd.read_csv('../Alliander_data/neat_profiles.csv')
+connect_df = pd.read_csv('../Alliander_data/sorted_connect.csv')
+meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv',index_col=0)
 
 meetdata_df.sort_index(inplace=True)
 print("loaded all the databases")
@@ -120,4 +120,4 @@ estimated_loads_df.insert(1, 'Profiles', profiles)
 
 print(estimated_loads_df.head())
 
-estimated_loads_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/estimated_loads.csv')
+estimated_loads_df.to_csv('../Alliander_data/estimated_loads.csv')

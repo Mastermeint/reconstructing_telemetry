@@ -329,11 +329,11 @@ def produce_differences_df(df):
     return df
 
 def specific_profile_telem(profiles):
-    profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/profielen.csv')
+    profile_df = pd.read_csv('../Alliander_data/profielen.csv')
     profile_df.loc[profile_df['BASELOAD_PROFILE'].isin(profiles)]
     indexes = profile_df['RND_ID'].sort_values(by='RND_ID').values
 
-    meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',
+    meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv',
                               skiprows=lambda x: x not in indexes)
     return meetdata_df
 
@@ -620,7 +620,7 @@ def total_consumption_meetdata(df):
 
     return df
 
-def load_profiles(reload=0, Alliander_path="C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/"):
+def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
     try:
         if reload: raise FileNotFoundError
         connect_df = pd.read_csv(
@@ -681,11 +681,11 @@ def load_profiles(reload=0, Alliander_path="C:/Users/tratt/OneDrive/Desktop/Inte
 # TODO: adjust to load_data function
 # only load parts of the meet_data have the desired profiles
 def specific_profile_telem(profiles):
-    profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/profielen.csv')
+    profile_df = pd.read_csv('../Alliander_data/profielen.csv')
     profile_df.loc[profile_df['BASELOAD_PROFILE'].isin(profiles)]
     indexes = profile_df['RND_ID'].sort_values(by='RND_ID').values
 
-    meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',
+    meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv',
                               skiprows=lambda x: x not in indexes)
     return meetdata_df
 
@@ -693,8 +693,8 @@ def specific_profile_telem(profiles):
 
 Here below there is an example of how to use the set_correct_index_profiles function
 
-profile = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles.csv')
-customer = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', index_col = 0, nrows = 100)
+profile = pd.read_csv('../Alliander_data/neat_profiles.csv')
+customer = pd.read_csv('../Alliander_data/unique_meetdata.csv', index_col = 0, nrows = 100)
 
 print(set_correct_index_profiles(profile,customer).head())    
 

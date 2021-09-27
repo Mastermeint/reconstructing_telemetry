@@ -329,11 +329,11 @@ def produce_differences_df(df):
     return df
 
 def specific_profile_telem(profiles):
-    profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/profielen.csv')
+    profile_df = pd.read_csv('../Alliander_data/profielen.csv')
     profile_df.loc[profile_df['BASELOAD_PROFILE'].isin(profiles)]
     indexes = profile_df['RND_ID'].sort_values(by='RND_ID').values
 
-    meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',
+    meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv',
                               skiprows=lambda x: x not in indexes)
     return meetdata_df
 
@@ -575,7 +575,7 @@ def total_consumption_meetdata(df):
 
     return df
 
-def load_profiles(reload=0, Alliander_path="C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/"):
+def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
     try:
         if reload: raise FileNotFoundError
         connect_df = pd.read_csv(
@@ -636,11 +636,11 @@ def load_profiles(reload=0, Alliander_path="C:/Users/tratt/OneDrive/Desktop/Inte
 # TODO: adjust to load_data function
 # only load parts of the meet_data have the desired profiles
 def specific_profile_telem(profiles):
-    profile_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/profielen.csv')
+    profile_df = pd.read_csv('../Alliander_data/profielen.csv')
     profile_df.loc[profile_df['BASELOAD_PROFILE'].isin(profiles)]
     indexes = profile_df['RND_ID'].sort_values(by='RND_ID').values
 
-    meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv',
+    meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv',
                               skiprows=lambda x: x not in indexes)
     return meetdata_df
 
@@ -677,5 +677,5 @@ def set_correct_index_profiles(profile_df, meetdata_df):
 # Delete first
     profile_df = profile_df.drop([first_column], axis=1)
     
-    profile_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles_fitted.csv')
+    profile_df.to_csv('../Alliander_data//neat_profiles_fitted.csv')
     return profile_df

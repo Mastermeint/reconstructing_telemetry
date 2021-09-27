@@ -14,8 +14,8 @@ from sklearn.gaussian_process.kernels import RBF
 import pandas as pd
 
 
-unique_meetdata = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv')
-spectral_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_multiple_frequencies_cluster_profiles.csv')
+unique_meetdata = pd.read_csv('../Alliander_data/unique_meetdata.csv')
+spectral_df = pd.read_csv('../Alliander_data/spectral_multiple_frequencies_cluster_profiles.csv')
 
 first_column = unique_meetdata.columns[0]
 
@@ -73,16 +73,16 @@ for i in range(len(profiles)):
 
 spectral_df["Numeration Profiles"] = profiles_np
 
-spectral_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_preparation_and_check.csv',chunksize=100, index = False)
+spectral_df.to_csv('../Alliander_data/spectral_preparation_and_check.csv',chunksize=100, index = False)
 
 spectral_df = spectral_df.drop(["Customer","Profiles"], axis = 1)
 
-spectral_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_training.csv',chunksize=100, index = False)
+spectral_df.to_csv('../Alliander_data/spectral_training.csv',chunksize=100, index = False)
 
 training_set_dimension = 1000
 
-spectral_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_training.csv', nrows = training_set_dimension)
-spectral_df_to_cluster = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_training.csv', skiprows = training_set_dimension+1, nrows = 1)
+spectral_df = pd.read_csv('../Alliander_data/spectral_training.csv', nrows = training_set_dimension)
+spectral_df_to_cluster = pd.read_csv('../Alliander_data/spectral_training.csv', skiprows = training_set_dimension+1, nrows = 1)
 y = spectral_df["K-means cluster"].to_numpy() 
 print("Here is y: ")
 print(y)
@@ -118,7 +118,7 @@ row = np.append(row,yhat)
 print(row)
 spectral_df = spectral_df.append(pd.DataFrame(row.reshape(1,-1), columns=list(spectral_df)), ignore_index=True)
 print(spectral_df)
-spectral_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_after_training.csv', index = False)
+spectral_df.to_csv('../Alliander_data/spectral_after_training.csv', index = False)
 
 
 

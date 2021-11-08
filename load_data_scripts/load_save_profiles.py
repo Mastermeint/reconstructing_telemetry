@@ -10,6 +10,12 @@ def normalize_df(df):
     return df
 
 
+# drop leapday '2020-02-29'
+def drop_leap_day(df):
+    df = df[~((df.index.month == 2) & (df.index.day == 29))]
+    return df
+
+
 def convert_to_kvk(profile_name):
     # convert names in profile_of_interest to match with column names in
     # profielen.csv
@@ -74,6 +80,8 @@ def load_profiles(reload=0, Alliander_path="../Alliander_data/"):
                                     axis=1)
         # normalize all profiles
         neat_profile_df = normalize_df(strp_profile_df)
+        # drop the leap day
+        neat_profile_df = drop_leap_day(neat_profile_df)
 
         neat_profile_df.to_csv(
             Alliander_path + "neat_profiles.csv")

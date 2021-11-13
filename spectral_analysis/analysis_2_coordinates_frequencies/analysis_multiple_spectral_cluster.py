@@ -13,8 +13,8 @@ from statsmodels.tsa.arima_model import ARMA
 from statsmodels.compat import lzip
 from scipy import stats
 
-df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_multiple_frequencies_cluster.csv')
-connect_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/sorted_connect.csv')
+df = pd.read_csv('../Alliander_data/spectral_multiple_frequencies_cluster.csv')
+connect_df = pd.read_csv('../Alliander_data/Alliander_data/sorted_connect.csv')
 
 ''' Now we want to compute some statistics concerning the quality of the cluster obtained 
 '''
@@ -53,7 +53,7 @@ first_column = df.columns[0]
 
 # Delete first
 df = df.drop([first_column], axis=1)
-df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_multiple_frequencies_cluster_profiles.csv', index = False)
+df.to_csv('../Alliander_data/spectral_multiple_frequencies_cluster_profiles.csv', index = False)
 
 
 def histogram_spec_cluster(df,number_cluster, connect_df):

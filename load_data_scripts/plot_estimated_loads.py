@@ -23,8 +23,8 @@ import seaborn as sns
     3) Plot the time series obtained both from the unique_data file and from the estimated_loads file
 '''
 print("Loading profiles")
-unique_meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', nrows= 50)
-estimated_loads_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/estimated_loads.csv', nrows= 70)
+unique_meetdata_df = pd.read_csv('../Alliander_data/unique_meetdata.csv', nrows= 50)
+estimated_loads_df = pd.read_csv('../Alliander_data/estimated_loads.csv', nrows= 70)
 ID_number = unique_meetdata_df.iloc[:,0]
 # remember that row 0 corresponds to customer 2 in this case
 print("ID customer from the unique_meetdata: ")

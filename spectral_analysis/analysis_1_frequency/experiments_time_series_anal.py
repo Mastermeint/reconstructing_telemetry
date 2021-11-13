@@ -14,7 +14,7 @@ from statsmodels.compat import lzip
 from scipy import stats
 import seaborn as sns
 
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv', nrows=1000)
+meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv', nrows=1000)
 print(meetdata_df.head())
 #meetdata_df.T.plot()
 #plt.show()

@@ -14,7 +14,7 @@ from statsmodels.compat import lzip
 from scipy import stats
 import seaborn as sns
 
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/unique_meetdata.csv', index_col=0, nrows = 1500)
+meetdata_df = pd.read_csv('../Alliander_data/unique_meetdata.csv', index_col=0, nrows = 1500)
 
 #meetdata_df = normalize_meetdata(meetdata_df)
 meetdata_df.sort_index(inplace=True)
@@ -37,6 +37,6 @@ print(df_frequecies_pd)
 
 import csv
 
-df_frequecies_pd.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/spectral_multiple_frequencies.csv', chunksize= 100, index = False)
+df_frequecies_pd.to_csv('../Alliander_data/spectral_multiple_frequencies.csv', chunksize= 100, index = False)
 
 

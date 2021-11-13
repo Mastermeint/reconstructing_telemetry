@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 import seaborn as sns
 
-connect_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/sorted_connect.csv')
-meetdata_df = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/gv_meetdata_select.csv', nrows=50)
+connect_df = pd.read_csv('../Alliander_data/sorted_connect.csv')
+meetdata_df = pd.read_csv('../Alliander_data/gv_meetdata_select.csv', nrows=50)
 first_column = meetdata_df.columns[0]
 #customer = meetdata_df
 customer = meetdata_df.drop([first_column], axis=1)
-profile = pd.read_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles.csv')
+profile = pd.read_csv('../Alliander_data/Alliander_data/neat_profiles.csv')
 
 def set_correct_index_profiles(profile_df, meetdata_df):
     
@@ -25,7 +25,7 @@ def set_correct_index_profiles(profile_df, meetdata_df):
 # Delete first
     profile_df = profile_df.drop([first_column], axis=1)
     
-    profile_df.to_csv('C:/Users/tratt/OneDrive/Desktop/Internship Alliander/Alliander_data/neat_profiles_fitted.csv')
+    profile_df.to_csv('../Alliander_data/neat_profiles_fitted.csv')
     return profile_df
 
 print(set_correct_index_profiles(profile,customer).head())    
